@@ -17,14 +17,6 @@ describe('NAVIGATION BOTTOM BAR', () => {
     it('should navigate to data page from click rejected view', async () => {
         await homePage.tvRejected.click()
         await view.searchEditText.setValue('survey')
-        await bottomTabBar.homeTab.click()
-    })
-
-    it('should navigate to project page when click item project activity', async () => {
-        await homePage.mangroveActivityCard.click()
-        let title = await projectPage.titleAppbar.getText()
-        console.log("---> TITLE-APPBAR: " + title)
-        await projectPage.backButton.click()
     })
 
     async function allowPermission() {
@@ -34,4 +26,14 @@ describe('NAVIGATION BOTTOM BAR', () => {
             console.log(e.message)
         }
     }
+})
+
+describe('NAVIGATE TO PROJECT', () => {
+    it('should navigate to project page when click item project activity', async () => {
+        await browser.reloadSession()
+        await homePage.mangroveActivityCard.click()
+        let title = await projectPage.titleAppbar.getText()
+        console.log("---> TITLE-APPBAR: " + title)
+        await projectPage.backButton.click()
+    })
 })
