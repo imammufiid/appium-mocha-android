@@ -1,0 +1,23 @@
+{
+  "name": "first-automate-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/wdio helper/test.conf.js"
+  },
+  "author": "Imam Mufiid",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^7.25.0",
+    "selenium-webdriver": "^4.4.0",
+    "webdriverio": "^7.25.0"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.25.0",
+    "@wdio/mocha-framework": "^7.25.0",
+    "@wdio/spec-reporter": "^7.25.0",
+    "chromedriver": "^105.0.1",
+    "wdio-chromedriver-service": "^7.3.2"
+  }
+}
