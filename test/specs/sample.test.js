@@ -1,46 +1,37 @@
+const view = require('../helper/helper')
+const bottomTabBar = require('../helper/bottom_tab_bar_view')
+const homePage = require('../helper/home_page')
+const permissionDialog = require('../helper/permission_dialog')
+const projectPage = require('../helper/project_page')
+
 describe('NAVIGATION BOTTOM BAR', () => {
+
     it('should navigation bottom bar', async () => {
-
-        let el12 = await $('~Data');
-        el12.click();
-
-        let asdf = await $("id=id.or.yagasu.dbm:id/search")
-        await asdf.setValue('bibit');
-
-        let el14 = await $("~Pengaturan");
-        await el14.click();
-
+        await bottomTabBar.dataTab.click()
+        await view.searchEditText.setValue('bibit');
+        await bottomTabBar.settingTab.click();
         await allowPermission()
-
-        let el15 = await $("~Beranda");
-        await el15.click();
+        await bottomTabBar.homeTab.click()
     });
 
     it('should navigate to data page from click rejected view', async () => {
-        let tvRejectedView = await $('id=id.or.yagasu.dbm:id/tv_reject_now')
-        await tvRejectedView.click()
-
-        let asdf = await $('id=id.or.yagasu.dbm:id/search')
-        await asdf.setValue('bibit');
+        await homePage.tvRejected.click()
+        await view.searchEditText.setValue('survey')
+        await bottomTabBar.homeTab.click()
     })
 
-    it('should navigate to project page when click item project acitity', async () => {
-        let itemAgro = await $('//android.widget.FrameLayout[@index=0]')
-        await itemAgro.click()
+    it('should navigate to project page when click item project activity', async () => {
+        await homePage.mangroveActivityCard.click()
+        let title = await projectPage.titleAppbar.getText()
+        console.log("---> TITLE-APPBAR: " + title)
+        await projectPage.backButton.click()
     })
 
     async function allowPermission() {
         try {
-            let allowButton = await $('id=com.android.permissioncontroller:id/permission_allow_button')
-            await allowButton.click()
+            await permissionDialog.allowButton.click()
         } catch (e) {
             console.log(e.message)
-        }
-    }
-
-    async function denyPermission() {
-        while (await $('id=com.android.permissioncontroller:id/content_container')) {
-            await $('id=com.android.permissioncontroller:id/permission_deny_button').click()
         }
     }
 })
